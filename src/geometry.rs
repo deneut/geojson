@@ -45,7 +45,7 @@ use serde::{ser::SerializeMap, Deserialize, Deserializer, Serialize, Serializer}
 /// # fn test() {}
 /// # test()
 /// ```
-#[derive(Clone, Debug, PartialEq)]
+#[derive(Clone, Debug, PartialEq, schemars::JsonSchema)]
 pub enum Value {
     /// Point
     ///
@@ -258,7 +258,7 @@ impl Serialize for Value {
 /// # #[cfg(feature = "geo-types")]
 /// let geom: geo_types::Geometry<f64> = geometry.try_into().unwrap();
 /// ```
-#[derive(Clone, Debug, PartialEq)]
+#[derive(Clone, Debug, PartialEq, schemars::JsonSchema)]
 pub struct Geometry {
     /// Bounding Box
     ///

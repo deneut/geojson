@@ -472,7 +472,7 @@ pub use conversion::quick_collection;
 /// Feature Objects
 ///
 /// [GeoJSON Format Specification § 3.2](https://tools.ietf.org/html/rfc7946#section-3.2)
-#[derive(Clone, Debug, Default, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq, schemars::JsonSchema)]
 pub struct Feature {
     /// Bounding Box
     ///

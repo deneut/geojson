@@ -199,7 +199,7 @@ impl<'de> Deserialize<'de> for Feature {
 /// Feature identifier
 ///
 /// [GeoJSON Format Specification § 3.2](https://tools.ietf.org/html/rfc7946#section-3.2)
-#[derive(Clone, Debug, PartialEq)]
+#[derive(Clone, Debug, PartialEq, schemars::JsonSchema)]
 pub enum Id {
     String(String),
     Number(serde_json::Number),

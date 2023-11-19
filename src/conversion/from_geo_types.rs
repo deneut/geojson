@@ -194,7 +194,7 @@ where
     T: CoordFloat,
 {
     line_string
-        .points_iter()
+        .points()
         .map(|point| create_point_type(&point))
         .collect()
 }
@@ -242,7 +242,7 @@ where
 {
     let mut coords = vec![polygon
         .exterior()
-        .points_iter()
+        .points()
         .map(|point| create_point_type(&point))
         .collect()];
 
@@ -270,9 +270,8 @@ where
 #[cfg(test)]
 mod tests {
     use crate::{GeoJson, Geometry, Value};
-    use geo_types::{
-        Coordinate, GeometryCollection, Line, LineString, MultiLineString, MultiPoint,
-        MultiPolygon, Point, Polygon, Rect, Triangle,
+    use geo_types::{GeometryCollection, Line, LineString, MultiLineString, MultiPoint,
+        MultiPolygon, Point, Polygon, Rect, Triangle, Coord,
     };
 
     #[test]
@@ -356,9 +355,9 @@ mod tests {
 
     #[test]
     fn geo_triangle_conversion_test() {
-        let c1 = Coordinate { x: 0., y: 0. };
-        let c2 = Coordinate { x: 10., y: 20. };
-        let c3 = Coordinate { x: 20., y: -10. };
+        let c1 = Coord { x: 0., y: 0. };
+        let c2 = Coord { x: 10., y: 20. };
+        let c3 = Coord { x: 20., y: -10. };
 
         let triangle = Triangle(c1, c2, c3);
 
@@ -381,8 +380,8 @@ mod tests {
 
     #[test]
     fn geo_rect_conversion_test() {
-        let c1 = Coordinate { x: 0., y: 0. };
-        let c2 = Coordinate { x: 10., y: 20. };
+        let c1 = Coord { x: 0., y: 0. };
+        let c2 = Coord { x: 10., y: 20. };
 
         let rect = Rect::new(c1, c2);
 
