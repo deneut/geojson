@@ -14,11 +14,14 @@
 
 use std::convert::TryFrom;
 use std::str::FromStr;
+use std::hash::{Hash, Hasher};
+
 
 use crate::errors::{Error, Result};
 use crate::{util, Feature, Geometry, Value};
 use crate::{JsonObject, JsonValue};
 use serde::{ser::SerializeMap, Deserialize, Deserializer, Serialize, Serializer};
+
 
 impl From<Geometry> for Feature {
     fn from(geom: Geometry) -> Feature {
@@ -204,6 +207,18 @@ pub enum Id {
     String(String),
     Number(serde_json::Number),
 }
+
+impl Eq for Id {}
+
+impl Hash for Id {
+    fn hash<H: Hasher>(&self, state: &mut H) {
+        match self {
+            Id::String(s) => s.hash(state),
+            Id::Number(n) => n.to_string().hash(state),
+        }
+    }
+}
+
 
 impl Serialize for Id {
     fn serialize<S>(&self, serializer: S) -> std::result::Result<S::Ok, S::Error>
