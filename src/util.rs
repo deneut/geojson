@@ -81,6 +81,10 @@ pub fn get_bbox(object: &mut JsonObject) -> Result<Option<Bbox>> {
         Some(b) => b,
         None => return Ok(None),
     };
+    // Handle null bbox as None
+    if bbox_json.is_null() {
+        return Ok(None);
+    }
     let bbox_array = match bbox_json {
         JsonValue::Array(a) => a,
         _ => return Err(Error::BboxExpectedArray(bbox_json)),
