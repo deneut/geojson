@@ -20,6 +20,9 @@ geo-types = { version = "0.7.13", features = ["serde"], optional = true }
 thiserror = "2.0.6"
 log = "0.4.17"
 
+# OpenAPI
+utoipa = { version = "5", features = ["axum_extras"] }
+
 [dev-dependencies]
 num-traits = "0.2"
 criterion = "0.5.1"
